@@ -28,13 +28,23 @@ def binomial(N: int, n: int, p: float, q: float) -> float:
 if __name__ == "__main__":
     p = 0.5 #probability that event occurs
     q = 1-p #probability that event does not occur
-    N = 100 #number of experiments
+    N = 50 #number of experiments
     n = range(N) #number of occurences
     #(for which we want to know the probability)
     W_list = [binomial(N, n, p, q) for n in range(N)]
+    mean_value = N*p
+    #deviation -> Delta n
+    deviation = np.sqrt(N*p*q)
+    #rel_dev -> Delta n / mean n
+    rel_dev = np.sqrt(q/p) * 1/np.sqrt(N)
+    #rel_dev goes to zero for N-> infinity (law of large numbers)
 
     if round(np.sum(W_list), 0) != 1.0:
         print("Statistics is broken!")
     else:
         plt.bar(n, W_list)
+        plt.axvline(mean_value, color="red", label="mean value")
+        plt.xlabel("n")
+        plt.ylabel("Probability")
+        plt.legend()
         plt.show()
