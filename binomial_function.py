@@ -37,7 +37,7 @@ if __name__ == "__main__":
     deviation = np.sqrt(N*p*q)
     #rel_dev -> Delta n / mean n
     rel_dev = np.sqrt(q/p) * 1/np.sqrt(N)
-    #rel_dev goes to zero for N-> infinity (law of large numbers)
+    #rel_dev goes to zero for N -> infinity (law of large numbers)
 
     if round(np.sum(W_list), 0) != 1.0:
         print("Statistics is broken!")
