@@ -1,4 +1,4 @@
-
+import sys
 
 prior = 0.01 #prevalence if no other indicators
 #sensitivity to get a positive result on an infected person
@@ -28,6 +28,14 @@ def translate_prior_to_odds(prior):
     return 1/prior-1
 
 if __name__ == '__main__':
+    try:
+        prior = float(sys.argv[1])
+        sensitivity = float(sys.argv[2])
+        specificity = float(sys.argv[3])
+    except IndexError as Error:
+        print(f"Error: {Error}")
+        print("default values are being used")
+        pass
     bayes = bayes_factor_pos(sensitivity, FPR)
     prior_as_odds = translate_prior_to_odds(prior)
     probability_of_being_infected = bayes/(prior_as_odds + bayes)
